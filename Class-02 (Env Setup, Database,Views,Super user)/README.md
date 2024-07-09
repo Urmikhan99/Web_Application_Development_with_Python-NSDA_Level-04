@@ -1,15 +1,100 @@
-Database Migration
-Migrations are Django’s way of propagating changes we make to our models (adding a field, deleting a model, etc.) into our database schema.
+# Class 02 Overview:
 
-Make migrations:
+### Default database:
+- `db.sqlite3`
+
+### Database migrations
+
+**Migrations in Django**
+
+Migrations help you manage changes to your models and update your database structure accordingly.
+
+- **Generate migrations:**
+  ```bash
   python manage.py makemigrations
-Migrate:
+  ```
+
+- **Apply migrations:**
+  ```bash
   python manage.py migrate
-Django framework have a build-in database named db.sqlite3. To manage our database we used DB SQLite3 Server. If it not availabe in our computer we need to download and install this.
+  ```
 
-Download Link:
-[Download SQLiteBrowser 64-bit Windows](https://download.sqlitebrowser.org/DB.Browser.for.SQLite-3.12.2-win64.msi) <br>
-[Download SQLiteBrowser 32-bit Windows](https://download.sqlitebrowser.org/DB.Browser.for.SQLite-3.12.2-win32.msi)
+**Using SQLiteBrowser**
 
-How to Create Super User
-How to Display some text in web browser? Also add custom urls
+Django uses db.sqlite3 as its default database. You can view its contents using tools like [DB Browser for SQLite].
+
+### Super user:
+
+**Creating a Super User**
+
+To manage your Django application:
+
+1. Open the command prompt in your project's root folder.
+2. Activate your virtual environment:
+   ```bash
+   .\environmentname\Scripts\activate
+   ```
+3. Navigate to your Django project directory:
+   ```bash
+   cd path/to/your/project
+   ```
+4. Apply migrations:
+   ```bash
+   python manage.py migrate
+   ```
+5. Create a superuser:
+   ```bash
+   python manage.py createsuperuser
+   ```
+   Follow the prompts to set a username, email (optional), and password.
+   
+6. Start the Django server:
+   ```bash
+   python manage.py runserver
+   ```
+   Access the admin panel at:
+   ```bash
+   http://127.0.0.1:8000/admin/
+   ```
+
+
+### Creating views.py:
+1. Create `views.py` in your project folder:
+   ```python
+   from django.shortcuts import HttpResponse
+   
+   def Home(request):
+       return HttpResponse("Welcome to Django Project")
+   ```
+
+2. Link the view function to `urls.py`:
+   ```python
+   from myproject.views import Home
+   
+   urlpatterns = [
+       path('Home/', Home, name='Home'),
+   ]
+   ```
+
+3. Run the Django server:
+   ```bash
+   python manage.py runserver
+   ```
+
+4. Access the URL in your browser:
+   ```bash
+   http://127.0.0.1:8000/home/
+   ```
+  
+## Topics:
+- db.sqlite3 ( Default database )
+- make migrations
+- migrate
+- Create superuser
+- views.py
+- urls.py
+
+## Note: 
+- Use import * to import everything from a module.
+- Use from module_name import function_name to import a specific function from a module.
+- Importing all (import *) brings in all functions and variables from a module, while importing specific functions (from module_name import function_name) brings in only the function you specify.
